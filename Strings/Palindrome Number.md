@@ -1,0 +1,131 @@
+# Problem: Palindrome Number 🚀  
+**Link:** [Palindrome Number](https://leetcode.com/problems/palindrome-number/)  
+**Difficulty:** Easy  
+**Category:** Strings  
+**Topics:** String Conversion, Two-Pointer Technique  
+
+---
+
+## 📌 Problem Statement  
+Given an integer `x`, return **true** if `x` is a palindrome, and **false** otherwise.  
+
+A palindrome is a number that reads the same **forward** and **backward**.  
+
+---
+
+## 🔎 Examples  
+
+```cpp
+Input: x = 121
+Output: true
+Explanation: 121 reads the same from left to right and right to left.
+
+Input: x = -121
+Output: false
+Explanation: "-121" backwards is "121-", so it’s not the same.
+
+Input: x = 10
+Output: false
+Explanation: "10" backwards is "01", which is not equal.
+```
+
+🛠️ Constraints
+
+    -2^31 <= x <= 2^31 - 1
+
+    Follow-up: Solve it without converting the integer to a string.
+
+💡 Approach
+
+This solution converts the integer into a string, then checks if the string is the same when read forward and backward using a two-pointer technique.
+
+Steps:
+
+    Convert the integer to a string using to_string(x).
+
+    Set two pointers:
+
+        start → beginning of the string
+
+        end → last character of the string
+
+    While start < end:
+
+        Compare s[start] and s[end]
+
+        If they differ → return false
+
+        Otherwise move inward (start++, end--)
+
+    If loop finishes without mismatches → return true.
+
+🧩 Code Implementation
+
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        string s = to_string(x);   // Convert integer to string
+        int start = 0;             // Pointer at beginning
+        int end = s.length() - 1;  // Pointer at end
+
+        while (start < end) {
+            if (s[start] != s[end]) {
+                return false;      // If mismatch → not a palindrome
+            }
+            start++;               // Move left pointer right
+            end--;                 // Move right pointer left
+        }
+
+        return true;               // If loop finishes → palindrome
+    }
+};
+
+🖥️ Code Explanation (Line by Line)
+
+    string s = to_string(x);
+
+        Convert the integer into a string so we can easily access each digit.
+
+    int start = 0; int end = s.length() - 1;
+
+        start points to the first digit, end points to the last digit.
+
+    while (start < end)
+
+        Loop until the two pointers meet in the middle.
+
+    if (s[start] != s[end]) return false;
+
+        Compare characters at both ends.
+
+        If they differ → immediately conclude it’s not a palindrome.
+
+    start++; end--;
+
+        Move inward: left pointer goes right, right pointer goes left.
+
+    return true;
+
+        If no mismatches were found, the number is a palindrome.
+
+✅ Example Run
+
+For x = 121:
+
+    Convert → "121"
+
+    Compare → s[0] == s[2] → 1 == 1 ✔
+
+    Move pointers inward → s[1] == s[1] → 2 == 2 ✔
+
+    All checks passed → return true
+
+🔑 Key Takeaways
+
+    Two-pointer technique is great for checking symmetry.
+
+    Time Complexity: O(n), where n = number of digits.
+
+    Space Complexity: O(n) (string conversion).
+
+    Optimized Approach (Follow-up): Reverse half the number without converting to string.
