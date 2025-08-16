@@ -75,6 +75,7 @@ public:
         return count; // Number of unique elements
     }
 };
+```
 
 ✅ Example Walkthrough
 
